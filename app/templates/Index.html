@@ -1,0 +1,215 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}LITSOC{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+ <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/main.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+
+<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/jquery.scrollex.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/skel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+
+
+{% endblock %}
+
+ {% block content %}
+{% block navbar %}
+
+<header id="header" class="alt">
+                <div class="logo"><a href="index.html"> LITSOC <span> Thapar University</span></a></div>
+                <a href="#menu">Menu</a>
+</header>
+<nav id="menu">
+                <ul class="links">
+
+                    <li><a href="index.html">Home</a></li>
+                    {% if current_user.is_authenticated %}
+                <li style="margin-top: 2px;"><img class="img-rounded profile-thumbnail" src="{{ current_user.get_avtar(size = 40) }}"></li>
+                <li style="color: white;">{{current_user.username}}</li>
+                <li> <a href="{{url_for('main.home',page = 1) }}"> Submit Article </a> </li>
+                <li> <a href="{{url_for('main.Profile', name = current_user.username) }}"> Profile </a> </li>
+                <li> <a href="{{ url_for('main.edit_profile') }}">Edit Profile </a> </li>
+                <li> <a href="/logout"> Logout </a> </li>
+                {% else %}
+                <li> <a href="/Login"> Login </a> </li>
+                <li> <a href="/SignUp"> Sign Up </a> </li>
+                {% endif %}
+                
+                </ul>
+</nav>
+
+
+
+
+{% endblock %}
+
+
+
+
+{% for message in get_flashed_messages() %}
+ <div style="margin-left: 150px; margin-right: 150px;" class="alert alert-warning">
+ <button type="button" class="close" data-dismiss="alert">&times;</button>
+ {{ message }}
+ </div>
+ {% endfor %}
+
+
+<section class="banner full">
+                <article>
+                    <img src="{{ url_for('static', filename='images/slide01.jpg') }}" alt="" />
+                    <div class="inner">
+                        <header>
+                            <p>the yealy magazine of literary society, thapar university</p>
+                            <h2>avant garde</h2>
+                        </header>
+                    </div>
+                </article>
+                <article>
+                    <img src="{{ url_for('static', filename='images/slide02.jpg') }}" alt="" />
+                    <div class="inner">
+                        <header>
+                            <p>the yealy magazine of literary society, thapar university</p>
+                            <h2>avant garde</h2>
+                        </header>
+                    </div>
+                </article>
+                <article>
+                    <img src="{{ url_for('static', filename='images/slide04.jpg') }}"  alt="" />
+                    <div class="inner">
+                        <header>
+                            <p>the yealy magazine of literary society, thapar university</p>
+                            <h2>avant garde</h2>
+                        </header>
+                    </div>
+                </article>
+                <article>
+                    <img src="{{ url_for('static', filename='images/slide05.jpg') }}"  alt="" />
+                    <div class="inner">
+                        <header>
+                            <p>the yealy magazine of literary society, thapar university</p>
+                            <h2>avant garde</h2>
+                        </header>
+                    </div>
+                </article>
+            </section>
+
+
+<section id="one" class="wrapper style2">
+                <div class="inner">
+                    <div class="grid-style">
+
+                        <div>
+                            <div class="box">
+                                <div class="image fit">
+                                    <img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt="" />
+                                </div>
+                                <div class="content">
+                                    <header class="align-center">
+                                        <p>ENTRIES OPEN FOR MAGAZINE</p>
+                                        <h2>Articles Required</h2>
+                                    </header>
+                                    <p>The entries are open for this edition of Avant Garde, and the theme is "Reflection". If the topic doesn't light a bulb, fret not, because you can still send in your entries and they can be from mezzanine to mars (means absolutely random).</p>
+                                    <footer class="align-center">
+                                        <a href="/Home/1" class="button alt">SUBMIT ARTICLE</a>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="box">
+                                <div class="image fit">
+                                    <img src="{{ url_for('static', filename='images/pic03.jpg') }}" alt="" />
+                                </div>
+                                <div class="content">
+                                    <header class="align-center">
+                                        <p>ENTRIES OPEN FOR MAGAZINE</p>
+                                        <h2>Articles Required</h2>
+                                    </header>
+                                    <p>The entries are open for this edition of Avant Garde, and the theme is "Reflection". If the topic doesn't light a bulb, fret not, because you can still send in your entries and they can be from mezzanine to mars (means absolutely random).</p>
+                                    <footer class="align-center">
+                                        <a href="/Home/1" class="button alt">SUBMIT ARTICLE</a>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        <!-- Two -->
+            <section id="two" class="wrapper style3">
+                <div class="inner">
+                    <header class="align-center">
+                        <p> Your name comes along with the article that you submit for our magazine </p>
+                        <h2> COLLABORATE AND CREATE </h2>
+                    </header>
+                </div>
+            </section>
+
+        <!-- Three -->
+            <section id="three" class="wrapper style2">
+                <div class="inner">
+                    <header class="align-center">
+                        <p class="special">here is a glimpse of what happens at this elite society</p>
+                        <h2>SOME OF OUR POSTERS</h2>
+                    </header>
+                    <div class="gallery">
+                        <div>
+                            <div class="image fit">
+                                <a href="#"><img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="image fit">
+                                <a href="#"><img src="{{ url_for('static', filename='images/pic02.jpg') }}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="image fit">
+                                <a href="#"><img src="{{ url_for('static', filename='images/pic03.jpg') }}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="image fit">
+                                <a href="#"><img src="{{ url_for('static', filename='images/pic04.jpg') }}" alt="" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        <!-- Footer -->
+            <footer id="footer">
+                <div class="container">
+                    <ul class="icons">
+                        
+                        <li><a href="https://www.facebook.com/LitSoc.TIET/" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                        
+                        <li><a href="mailto:thapar.litsoc@gmail.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                    </ul>
+                </div>
+                <div class="copyright">
+                    &copy; LITSOC. All rights reserved.
+                </div>
+            </footer>
+
+
+
+{% endblock %}
+

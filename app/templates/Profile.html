@@ -1,0 +1,34 @@
+{% extends 'HomePage.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Sign Up {% endblock %}
+
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+ <div style="margin-left: 150px; margin-right: 150px;" class="alert alert-warning">
+ <button type="button" class="close" data-dismiss="alert">&times;</button>
+ {{ message }}
+ </div>
+ {% endfor %}
+
+<div class="page-header" style="padding-left: 80px;">
+	<h1 style="font-family: helvetica;"  > {{ user.username }} </h1>
+
+
+	<img class="img-rounded profile-thumbnail" src="{{ user.get_avtar(size = 150) }}">
+
+	<em><h3 > <u style="border-bottom:2px dotted;text-decoration: none; "> About </u></h3></em>
+	<p> {{ user.about_me }} <br> </p>
+	
+	<em><h3 > <u style="border-bottom:2px dotted;text-decoration: none; "> Email </u></h3></em>
+	<p> {{ user.email }} </p>
+	<em><h3 > <u style="border-bottom:2px dotted;text-decoration: none; "> Member Since </u></h3></em>
+	<p> {{ moment(user.member_since).format('L') }} </p>
+	<em><h3 > <u style="border-bottom:2px dotted;text-decoration: none; "> Last Seen </u></h3></em>
+	<p> {{ moment(user.last_seen).fromNow() }}
+	</p>
+
+
+</div>
+{% endblock %}
